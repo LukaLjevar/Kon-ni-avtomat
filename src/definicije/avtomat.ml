@@ -43,3 +43,30 @@ let seznam_prehodov avtomat = avtomat.prehodi
 
 let je_sprejemno_stanje avtomat stanje =
   List.mem stanje avtomat.sprejemna_stanja
+
+(*podniz razbijemo v seznam parov, kjer je prva komponenta indeks elementa v podnizu in je druga
+komponenta ta element niza.*)  
+let dvojica_v_niz (a, b) = 
+  "(" ^ (string_of_int a) ^ ", " ^ String.make 1 b ^ ")"
+
+let razbij_v_seznam podniz = 
+  let rec razbij_v_seznam' i podniz = 
+    if i >= String.length podniz then [] else
+      dvojica_v_niz (i, (String.get podniz i)) :: razbij_v_seznam' (i + 1) podniz in
+  razbij_v_seznam' 0 podniz
+
+
+(*V dobljenem seznamu nam vsi elementi razen zadnjega dajo nesprejemna stanja, zadnji element
+pa nam da sprejemno stanje*)  
+
+let iskalec_podnizov podniz = 
+  if podniz = "" then
+  let zacetno = Stanje.iz_niza "zacetno" in
+  prazen_avtomat zacetno |> dodaj_sprejemno_stanje zacetno
+  else
+  match (razbij_v_seznam podniz) with
+  (*|[] -> _*)
+  |x::[] -> _
+  |x::xs -> _
+  
+
