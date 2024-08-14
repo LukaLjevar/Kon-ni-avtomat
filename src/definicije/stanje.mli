@@ -1,4 +1,4 @@
 type t
 
-val iz_niza : string -> t
-val v_niz : t -> string
+val iz_para : int * char -> t
+val v_par : t -> int * char
