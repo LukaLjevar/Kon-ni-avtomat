@@ -49,6 +49,8 @@ let napolni_avtomat podniz =
    prehodi = prehodna (razbij_v_tabelo_stanj podniz)
   }
   
+let stanja {stanja; _} = stanja
+
 let ali_vsebuje_sprejemno_stanje tabela_stanj ls =   
   List.exists (fun t -> t = (sprejemno_stanje tabela_stanj)) ls
 
