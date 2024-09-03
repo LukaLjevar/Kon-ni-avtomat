@@ -1,6 +1,6 @@
 type t = { avtomat : Avtomat.t; trak : Trak.t; trenutna_stanja : Stanje.t list }
 
-let pozeni trak podniz = (*Avtomat, takoj potem, ko smoga prižgali*)
+let pozeni trak podniz = (*Avtomat, takoj potem, ko smo ga prižgali*)
   { avtomat = Avtomat.napolni_avtomat podniz; trak; trenutna_stanja = [(Avtomat.razbij_v_tabelo_stanj podniz).(0)] }
 
 let avtomat { avtomat; _ } = avtomat
@@ -15,5 +15,6 @@ let korak_naprej { avtomat; trak; trenutna_stanja } =
     { avtomat; trak = Trak.premakni_naprej trak; trenutna_stanja = nova_trenutna_stanja }
 
 (*Pove, če je avtomat v sprejemnem stanju. - PRILAGODI ZA SVOJ AVTOMAT - PREIMENUJ!*)
-(*let je_v_sprejemnem_stanju { avtomat; stanje; _ } =
-  Avtomat.sprejemno_stanje avtomat stanje*)
+let je_v_sprejemnem_stanju { avtomat; trenutna_stanja; _ } =
+  Avtomat.ali_vsebuje_sprejemno_stanje (Avtomat.stanja avtomat) trenutna_stanja
+  
