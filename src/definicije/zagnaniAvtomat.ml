@@ -1,7 +1,7 @@
 type t = { avtomat : Avtomat.t; trak : Trak.t; stanje : Stanje.t }
 
-let pozeni avtomat trak =
-  { avtomat; trak; stanje = Avtomat.zacetno_stanje avtomat }
+let pozeni avtomat trak podniz =
+  { Avtomat.napolni_avtomat podniz; trak; stanje = (Avtomat.razbij_v_tabelo_stanj podniz).(0) }
 
 let avtomat { avtomat; _ } = avtomat
 let trak { trak; _ } = trak
@@ -18,5 +18,6 @@ let korak_naprej { avtomat; trak; stanje } =
     | Some stanje' ->
         Some { avtomat; trak = Trak.premakni_naprej trak; stanje = stanje' }
 
+(*Pove, če je avtomat v sprejemnem stanju.*)
 let je_v_sprejemnem_stanju { avtomat; stanje; _ } =
-  Avtomat.je_sprejemno_stanje avtomat stanje
+  Avtomat.sprejemno_stanje avtomat stanje
