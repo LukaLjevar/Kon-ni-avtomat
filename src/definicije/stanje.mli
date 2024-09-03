@@ -1,4 +1,2 @@
-type t
+type t = int * char
 
-val iz_para : int * char -> t
-val v_par : t -> int * char

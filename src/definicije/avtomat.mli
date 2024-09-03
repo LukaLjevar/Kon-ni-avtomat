@@ -1,11 +1,8 @@
 type t
 
-val prazen_avtomat : Stanje.t -> t
-val dodaj_nesprejemno_stanje : Stanje.t -> t -> t
-val dodaj_sprejemno_stanje : Stanje.t -> t -> t
-val dodaj_prehod : Stanje.t -> char -> Stanje.t -> t -> t
-val prehodna_funkcija : t -> Stanje.t -> char -> Stanje.t option
-val zacetno_stanje : t -> Stanje.t
-val seznam_stanj : t -> Stanje.t list
-val seznam_prehodov : t -> (Stanje.t * char * Stanje.t) list
-val je_sprejemno_stanje : t -> Stanje.t -> bool
+type stanje = Stanje.t
+val razbij_v_tabelo_stanj : string -> stanje array
+val prehodna : stanje array -> stanje list -> char -> stanje list
+val sprejemno_stanje : stanje array -> stanje
+val napolni_avtomat : string -> t
+val ali_vsebuje_sprejemno_stanje : stanje array -> stanje list -> bool
