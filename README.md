@@ -1,2 +1,2 @@
 # Nedeterministični končni avtomat
-Projektna naloga pri predmetu Programiranje 1
+**TODO!!!** Projektna naloga pri predmetu Programiranje 1 **TODO!!!**
