@@ -29,8 +29,9 @@ let pomozna_prehodna_funkcija tabela_stanj (int, char) znak =
   |_ -> [tabela_stanj.(0)] 
         
 let prehodna tabela_stanj seznam_vseh_trenutnih_stanj znak = 
-  List.flatten (List.map (fun t -> pomozna_prehodna_funkcija tabela_stanj t znak) seznam_vseh_trenutnih_stanj) 
-                                                                        
+  let ls = List.flatten (List.map (fun t -> pomozna_prehodna_funkcija tabela_stanj t znak) seznam_vseh_trenutnih_stanj) in
+  if List.mem (tabela_stanj.(0)) ls then ls else (tabela_stanj.(0)) :: ls
+                    
 type t = 
   {iskani_podniz : string ; 
    zacetno_stanje : stanje ;

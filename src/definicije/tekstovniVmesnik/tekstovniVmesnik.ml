@@ -9,17 +9,17 @@ type stanje_vmesnika =
   | OpozoriloONapacnemNizu
 
 type model = {
-  avtomat : t;
-  stanje_avtomata : Stanje.t;
+  avtomat : t; (*Ker smo modul Avtomat odprli, ni treba pisati Avtomat.t, zadošča samo t.*)
+  trenutna_stanja_avtomata : Stanje.t list;
   stanje_vmesnika : stanje_vmesnika;
 }
 
 type msg =
-  | PreberiNiz of string
+  | VnesiNizInPodniz of string * string (*Vnesemo niz in podniz, ki ga bomo iskali v nizu*)
   | ZamenjajVmesnik of stanje_vmesnika
   | VrniVPrvotnoStanje
 
-let preberi_niz avtomat q niz =
+let preberi_niz avtomat q niz = (*q -> trenutna stanja ob začetku procesiranja niza.*)
   let aux acc znak =
     match acc with
     | None -> None
@@ -27,21 +27,23 @@ let preberi_niz avtomat q niz =
   in
   niz |> String.to_seq |> Seq.fold_left aux (Some q)
 
+
+
 let update model = function
-  | PreberiNiz str -> (
-      match preberi_niz model.avtomat model.stanje_avtomata str with
+  | VnesiNizInPodniz (str1, str2) -> (
+      match preberi_niz model.avtomat model.trenutna_stanja_avtomata str with
       | None -> { model with stanje_vmesnika = OpozoriloONapacnemNizu }
-      | Some stanje_avtomata ->
+      | Some trenutna_stanja_avtomata ->
           {
             model with
-            stanje_avtomata;
+            trenutna_stanja_avtomata;
             stanje_vmesnika = RezultatPrebranegaNiza;
           })
   | ZamenjajVmesnik stanje_vmesnika -> { model with stanje_vmesnika }
   | VrniVPrvotnoStanje ->
       {
         model with
-        stanje_avtomata = zacetno_stanje model.avtomat;
+        trenutna_stanja_avtomata = zacetno_stanje model.avtomat;
         stanje_vmesnika = SeznamMoznosti;
       }
 
