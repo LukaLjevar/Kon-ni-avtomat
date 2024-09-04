@@ -15,7 +15,7 @@ type model = {
 }
 
 type msg =
-  | VnesiNizInPodniz of string * string (*Vnesemo niz in podniz, ki ga bomo iskali v nizu*)
+  | VnesiNizInPodniz of string * string (*Vnesemo niz in podniz, ki ga bomo iskali v nizu.*)
   | ZamenjajVmesnik of stanje_vmesnika
   | VrniVPrvotnoStanje
 
