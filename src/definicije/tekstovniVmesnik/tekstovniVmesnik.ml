@@ -15,7 +15,7 @@ type model = {
 }
 
 type msg =
-  | VnesiNizInPodniz of string * string (*Vnesemo niz in podniz, ki ga bomo iskali v nizu.*)
+  | VnesiNadniz of string  (*Vnesemo nadniz, vkaterem iščemo podniz*)
   | ZamenjajVmesnik of stanje_vmesnika
   | VrniVPrvotnoStanje
 
@@ -23,15 +23,15 @@ let preberi_niz avtomat q niz = (*q -> trenutna stanja ob začetku procesiranja 
   let aux acc znak =
     match acc with
     | None -> None
-    | Some q -> Avtomat.prehodna_funkcija avtomat q znak
+    | Some q -> Some (prehodna avtomat q znak)
   in
   niz |> String.to_seq |> Seq.fold_left aux (Some q)
 
 
 
 let update model = function
-  | VnesiNizInPodniz (str1, str2) -> (
-      match preberi_niz model.avtomat model.trenutna_stanja_avtomata str with
+  | VnesiNadniz str -> (
+      match preberi_niz (stanja (model.avtomat)) model.trenutna_stanja_avtomata str with
       | None -> { model with stanje_vmesnika = OpozoriloONapacnemNizu }
       | Some trenutna_stanja_avtomata ->
           {
@@ -43,7 +43,7 @@ let update model = function
   | VrniVPrvotnoStanje ->
       {
         model with
-        trenutna_stanja_avtomata = zacetno_stanje model.avtomat;
+        trenutna_stanja_avtomata = trenutna_stanja (model.avtomat);
         stanje_vmesnika = SeznamMoznosti;
       }
 
@@ -62,24 +62,25 @@ let rec izpisi_moznosti () =
 
 let izpisi_avtomat avtomat =
   let izpisi_stanje stanje =
-    let prikaz = Stanje.v_niz stanje in
+    let indeks_stanja, char_stanja = stanje in
+    let prikaz =  "(" ^ (string_of_int indeks_stanja) ^ ", " ^ (String.make 1 char_stanja) ^ ")" in
     let prikaz =
-      if stanje = zacetno_stanje avtomat then "-> " ^ prikaz else prikaz
+      if stanje = (stanja avtomat).(0) then "-> " ^ prikaz else prikaz
     in
     let prikaz =
-      if je_sprejemno_stanje avtomat stanje then prikaz ^ " +" else prikaz
+      if stanje = sprejemno_stanje (stanja avtomat) then prikaz ^ " +" else prikaz
     in
     print_endline prikaz
   in
-  List.iter izpisi_stanje (seznam_stanj avtomat)
+  Array.iter izpisi_stanje (stanja avtomat)
 
 let beri_niz _model =
-  print_string "Vnesi niz > ";
+  print_string "Vnesi nadniz > ";
   let str = read_line () in
-  PreberiNiz str
+  VnesiNadniz str
 
 let izpisi_rezultat model =
-  if je_sprejemno_stanje model.avtomat model.stanje_avtomata then
+  if ali_vsebuje_sprejemno_stanje (stanja (model.avtomat)) model.trenutna_stanja_avtomata then
     print_endline "Niz je bil sprejet"
   else print_endline "Niz ni bil sprejet"
 
@@ -100,7 +101,7 @@ let view model =
 let init avtomat =
   {
     avtomat;
-    stanje_avtomata = zacetno_stanje avtomat;
+    trenutna_stanja_avtomata = [(stanja avtomat).(0)];
     stanje_vmesnika = SeznamMoznosti;
   }
 
@@ -109,4 +110,7 @@ let rec loop model =
   let model' = update model msg in
   loop model'
 
-let _ = loop (init enke_1mod3)
+let _ = 
+  print_string "Vnesi podniz, ki ga iščeš.> ";
+  let podniz = read_line () in
+  loop (init (napolni_avtomat podniz))

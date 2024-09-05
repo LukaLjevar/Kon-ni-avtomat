@@ -35,7 +35,7 @@ let prehodna tabela_stanj seznam_vseh_trenutnih_stanj znak =
 type t = 
   {iskani_podniz : string ; 
    zacetno_stanje : stanje ;
-   trenutno_stanje : stanje list;
+   trenutna_stanja : stanje list;
    stanja : stanje array ;
    sprejemno_stanje : stanje ; 
    prehodi : stanje list -> char -> stanje list
@@ -44,13 +44,15 @@ type t =
 let napolni_avtomat podniz = 
   {iskani_podniz = podniz ; 
    zacetno_stanje = (-1, 'X') ;
-   trenutno_stanje = [(-1, 'X')] ;
+   trenutna_stanja = [(-1, 'X')] ;
    stanja = razbij_v_tabelo_stanj podniz ;
    sprejemno_stanje = sprejemno_stanje (razbij_v_tabelo_stanj podniz) ; 
    prehodi = prehodna (razbij_v_tabelo_stanj podniz)
   }
   
 let stanja {stanja; _} = stanja
+
+let trenutna_stanja {trenutna_stanja; _ } = trenutna_stanja
 
 let ali_vsebuje_sprejemno_stanje tabela_stanj ls =   
   List.exists (fun t -> t = (sprejemno_stanje tabela_stanj)) ls
