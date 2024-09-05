@@ -48,6 +48,8 @@ let update model = function
       }
 
 let rec izpisi_moznosti () =
+  print_endline " ";
+  print_endline "Izberi 1, 2 ali 3:";
   print_endline "1) izpiši avtomat";
   print_endline "2) beri znake";
   print_endline "3) nastavi na začetno stanje";
@@ -75,14 +77,14 @@ let izpisi_avtomat avtomat =
   Array.iter izpisi_stanje (stanja avtomat)
 
 let beri_niz _model =
-  print_string "Vnesi nadniz > ";
+  print_string "Vnesi nadniz brez narekovajev.> ";
   let str = read_line () in
   VnesiNadniz str
 
 let izpisi_rezultat model =
   if ali_vsebuje_sprejemno_stanje (stanja (model.avtomat)) model.trenutna_stanja_avtomata then
-    print_endline "Juhuhuuuuu! Podniz je bil najden v nadnizu :) "
-  else print_endline "Podniz ni bil najden v nadnizu :( Več sreče prihodnjič!"
+    Format.printf "Juhuhuuuuu! Podniz %s je bil najden v nadnizu :) \n%!" (iz_tabele_stanj (stanja (model.avtomat))) 
+  else Format.printf  "Podniz %s ni bil najden v nadnizu :( Več sreče prihodnjič! \n%!" (iz_tabele_stanj (stanja (model.avtomat))) 
 
 let view model =
   match model.stanje_vmesnika with
@@ -111,6 +113,6 @@ let rec loop model =
   loop model'
 
 let _ = 
-  print_string "Vnesi podniz, ki ga iščeš.> ";
+  print_string "Vnesi podniz, ki ga iščeš, brez narekovajev.> ";
   let podniz = read_line () in
   loop (init (napolni_avtomat podniz))

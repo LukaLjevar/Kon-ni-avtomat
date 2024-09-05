@@ -8,6 +8,16 @@ let razbij_v_tabelo_stanj niz =
     for i = 1 to n do
       a.(i) <- (i - 1, String.get  niz (i - 1)) 
     done; a 
+
+let iz_tabele_stanj tab =  
+  if tab = [||] then failwith "Tabela stanj je vedno neprazna!" else
+    let n  = Array.length tab in
+    if n = 1 then "" else
+      let r = ref "" in
+    for i = 1 to  n - 1 do
+     r :=   (!r) ^ (String.make 1 (snd tab.(i)))
+    done; !r
+
     
 (*Iz tabele stanj izluščimo sprejemno stanje - to je zadnje stanje v tabeli*)
 let sprejemno_stanje tabela_stanj = 
