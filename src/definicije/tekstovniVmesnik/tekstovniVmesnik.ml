@@ -31,7 +31,7 @@ let preberi_niz avtomat q niz = (*q -> trenutna stanja ob začetku procesiranja 
 
 let update model = function
   | VnesiNadniz str -> (
-      match preberi_niz (stanja (model.avtomat)) model.trenutna_stanja_avtomata str with
+      match preberi_niz (stanja (model.avtomat)) (trenutna_stanja model.avtomat) str with
       | None -> { model with stanje_vmesnika = OpozoriloONapacnemNizu }
       | Some trenutna_stanja_avtomata ->
           {

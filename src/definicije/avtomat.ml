@@ -15,10 +15,10 @@ let sprejemno_stanje tabela_stanj =
     let n = Array.length tabela_stanj in
     tabela_stanj.(n - 1)
     
-(*Povemo: 1. v katerem stanju se nahajamo trenutno
-2. katera stanja so na voljo
-3. kateri je vaslednji zank iz nadniza, ki ga avtomat prejme
-funkcija vrne stanje, v katerem se avtomat nahaja po tem*)
+(*Povemo: 1. V katerem stanju se trenutno nahajamo,
+2. katera stanja so na voljo, 
+3. kateri je naslednji zank iz nadniza, ki ga avtomat prejme
+funkcija vrne stanje, v katerem se avtomat nahaja po tem.*)
 let pomozna_prehodna_funkcija tabela_stanj (int, char) znak = 
   (*Če smo že začeli v sprejemnem stanju, potem v njem ostanemo*)  
   match int, znak with
