@@ -113,6 +113,8 @@ let rec loop model =
   loop model'
 
 let _ = 
+  print_endline "Dobrodošel v iskalniku podnizov!";
   print_string "Vnesi podniz, ki ga iščeš, brez narekovajev.> ";
   let podniz = read_line () in
   loop (init (napolni_avtomat podniz))
+
