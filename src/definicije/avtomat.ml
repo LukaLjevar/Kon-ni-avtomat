@@ -67,6 +67,16 @@ let trenutna_stanja {trenutna_stanja; _ } = trenutna_stanja
 let ali_vsebuje_sprejemno_stanje tabela_stanj ls =   
   List.exists (fun t -> t = (sprejemno_stanje tabela_stanj)) ls
 
+let natisni_trenutna_stanja ls =
+  let rec natisni' = function
+  |[] -> ()
+  |[(n, c)] -> print_string ("(" ^ string_of_int n ^", "^ (String.make 1 c) ^ ")")
+  |(n, c)::xs -> print_string ("(" ^ string_of_int n ^", "^ (String.make 1 c) ^ "); "); natisni' xs
+in print_endline ""; print_string "Trenutna stanja avtomata: ["; natisni' ls; print_string "]"; print_endline ""; print_endline ""
+
+
+
+
 
   
 

@@ -32,14 +32,14 @@ let preberi_niz avtomat q niz = (*q -> trenutna stanja ob začetku procesiranja 
 let update model = function
   | VnesiNadniz str -> (
       match preberi_niz (stanja (model.avtomat)) (trenutna_stanja model.avtomat) str with
-      | None -> { model with stanje_vmesnika = OpozoriloONapacnemNizu }
-      | Some trenutna_stanja_avtomata ->
+      | None ->{ model with stanje_vmesnika = OpozoriloONapacnemNizu } 
+      | Some trenutna_stanja_avtomata -> natisni_trenutna_stanja (model.trenutna_stanja_avtomata);
           {
             model with
             trenutna_stanja_avtomata;
             stanje_vmesnika = RezultatPrebranegaNiza;
           })
-  | ZamenjajVmesnik stanje_vmesnika -> { model with stanje_vmesnika }
+  | ZamenjajVmesnik stanje_vmesnika ->{ model with stanje_vmesnika }
   | VrniVPrvotnoStanje ->
       {
         model with

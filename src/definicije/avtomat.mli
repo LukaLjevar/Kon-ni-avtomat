@@ -9,3 +9,4 @@ val napolni_avtomat : string -> t
 val stanja : t -> stanje array
 val trenutna_stanja : t -> stanje list
 val ali_vsebuje_sprejemno_stanje : stanje array -> stanje list -> bool
+val natisni_trenutna_stanja : stanje list -> unit
