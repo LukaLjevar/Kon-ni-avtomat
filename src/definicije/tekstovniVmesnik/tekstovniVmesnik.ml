@@ -57,7 +57,7 @@ let rec izpisi_moznosti () =
   | "2" -> ZamenjajVmesnik BranjeNiza
   | "3" -> VrniVPrvotnoStanje
   | _ ->
-      print_endline "** VNESI 1, 2 ALI 3 **";
+      print_endline "** REKEL SEM VNESI 1, 2 ALI 3! Če pa ne znaš prešteti do tri, pa raje pojdi nazaj v vrtec! **";
       izpisi_moznosti ()
 
 let izpisi_avtomat avtomat =
@@ -81,8 +81,8 @@ let beri_niz _model =
 
 let izpisi_rezultat model =
   if ali_vsebuje_sprejemno_stanje (stanja (model.avtomat)) model.trenutna_stanja_avtomata then
-    print_endline "Niz je bil sprejet"
-  else print_endline "Niz ni bil sprejet"
+    print_endline "Juhuhuuuuu! Podniz je bil najden v nadnizu :) "
+  else print_endline "Podniz ni bil najden v nadnizu :( Več sreče prihodnjič!"
 
 let view model =
   match model.stanje_vmesnika with
