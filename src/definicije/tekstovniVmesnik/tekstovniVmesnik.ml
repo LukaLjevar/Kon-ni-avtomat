@@ -28,24 +28,29 @@ let preberi_niz avtomat q niz = (*q -> trenutna stanja ob začetku procesiranja 
   niz |> String.to_seq |> Seq.fold_left aux (Some q)
 
 
+let update model msg = 
+  let update' model = function
+    | VnesiNadniz str -> (
+        match preberi_niz (stanja (model.avtomat)) (trenutna_stanja model.avtomat) str with
+        | None ->{ model with stanje_vmesnika = OpozoriloONapacnemNizu } 
+        | Some trenutna_stanja_avtomata -> 
+            {
+              model with
+              trenutna_stanja_avtomata;
+              stanje_vmesnika = RezultatPrebranegaNiza;
+            })
+    | ZamenjajVmesnik stanje_vmesnika ->{ model with 
+    trenutna_stanja_avtomata = [(stanja model.avtomat).(0)] ;
+    stanje_vmesnika }
+    | VrniVPrvotnoStanje ->
+        {
+          model with
+          trenutna_stanja_avtomata = trenutna_stanja (model.avtomat);
+          stanje_vmesnika = SeznamMoznosti;
+        }
+    in 
+    natisni_trenutna_stanja ((update' model msg).trenutna_stanja_avtomata); update' model msg
 
-let update model = function
-  | VnesiNadniz str -> (
-      match preberi_niz (stanja (model.avtomat)) (trenutna_stanja model.avtomat) str with
-      | None ->{ model with stanje_vmesnika = OpozoriloONapacnemNizu } 
-      | Some trenutna_stanja_avtomata -> natisni_trenutna_stanja (model.trenutna_stanja_avtomata);
-          {
-            model with
-            trenutna_stanja_avtomata;
-            stanje_vmesnika = RezultatPrebranegaNiza;
-          })
-  | ZamenjajVmesnik stanje_vmesnika ->{ model with stanje_vmesnika }
-  | VrniVPrvotnoStanje ->
-      {
-        model with
-        trenutna_stanja_avtomata = trenutna_stanja (model.avtomat);
-        stanje_vmesnika = SeznamMoznosti;
-      }
 
 let rec izpisi_moznosti () =
   print_endline " ";

@@ -67,6 +67,8 @@ let trenutna_stanja {trenutna_stanja; _ } = trenutna_stanja
 let ali_vsebuje_sprejemno_stanje tabela_stanj ls =   
   List.exists (fun t -> t = (sprejemno_stanje tabela_stanj)) ls
 
+
+(*Funkcija, ki je odvisna od trenutnih stanj. Tako iz končnega avtomata dobimo Moorov avtomat.*)  
 let natisni_trenutna_stanja ls =
   let rec natisni' = function
   |[] -> ()
