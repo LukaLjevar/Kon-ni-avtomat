@@ -17,7 +17,7 @@ V primeru iskalnika podniza, iz niza1 generiramo mno탑ico stanj na naslednji na�
 ## avtomat.ml
 **TO DO**
 ## stanje.ml
-**TO DO**
+Stanja sem implementiral z urejenim parom int * char. Nato te urejen pare v datoteki avtomat.ml zlo탑im v tabelo in na ta na훾in predstavim mno탑ico stanja avtomata.
 ## trak.ml
 **TO DO**
 ## zagnani_avtomat.ml
