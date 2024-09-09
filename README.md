@@ -18,6 +18,10 @@ V primeru iskalnika podniza, iz niza1 generiramo množico stanj na naslednji na�
 ## Kako avtomat deluje?
 ![Avtomat](https://github.com/user-attachments/assets/cca60b88-850b-4673-afbd-eebb958df38e)
 
+Zgornja slika prikazuje avtomat, ki v nizu preverja obstoj podniza "analiza". Začnemo v začetnem stanju (-1, 'X'). V tem stanju ostanemo, dokler (morda) ne prejmemo znaka 'a'. Tedaj se ena veja premakne v naslednje stanje, kjer pričakuje naslednji znak, ena pa ostane na začetku. Postopek ponavljamo, dokler ne pridemo do konca niza ozirom dokler ena izmed vej ne pride do sprejemnega stanja (6, 'a').
+
+### Zakaj nedeterministično?
+
 ## avtomat.ml
 Na začetnute datoteke definiramo funkcijo, ki iz niza1 tvori ustrezno tabelo možnih stanj. S pomočjo te tabele bomo ustvarili avtomat, ki išče ta podniz. Definiramo tudi njen "inverz", ki ustrezno tabelo stanj pretvori nazaj v niz. To funkcijo bomo potrebovali zato, da lahko tekstovni vmesnik natisne iskani niz1. Sprejemno stanje je preprosto zadnje mesto v tabeli. Ker je avtomat nedeterminističen, je lahko v večih stanjih hkrati. Seznam trenutnih stanj je implemntiran s seznamom, zato da lahko zlahka dodajamo na začetek. Prehode definiramo s pomočjo dveh funkcij. Prva enemu izmed trenutnih stanj priredi vsa naslednja stanja, druga pa združi slike vseh posameznih stanj v niv seznam. Sledi definicija tipa avtomat in navodilo, kako iz danega niza1 ustvariti avtomat, ki bo ta niz iskal v drugih nizih. Tako lahko ustvarimo različne avtomate, glede na to kateri niz1 smo vnesli na začetku. Na koncu definiramo še izhodno funkcijo v odvisnosti od trenutnih stanj in tako iz končnega avtomata ustvarimo Mooreov avtomat.
 ## stanje.ml
