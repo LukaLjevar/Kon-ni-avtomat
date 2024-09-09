@@ -27,7 +27,13 @@ let preberi_niz avtomat q niz = (*q -> trenutna stanja ob začetku procesiranja 
   in
   niz |> String.to_seq |> Seq.fold_left aux (Some q)
 
-
+  let init avtomat =
+    {
+      avtomat;
+      trenutna_stanja_avtomata = [(stanja avtomat).(0)];
+      stanje_vmesnika = SeznamMoznosti;
+    }
+    
 let update model msg = 
   let update' model = function
     | VnesiNadniz str -> (
@@ -43,11 +49,7 @@ let update model msg =
     trenutna_stanja_avtomata = [(stanja model.avtomat).(0)] ;
     stanje_vmesnika }
     | VrniVPrvotnoStanje ->
-        {
-          model with
-          trenutna_stanja_avtomata = trenutna_stanja (model.avtomat);
-          stanje_vmesnika = SeznamMoznosti;
-        }
+    init (model.avtomat)
     in 
     natisni_trenutna_stanja ((update' model msg).trenutna_stanja_avtomata); update' model msg
 
@@ -105,12 +107,7 @@ let view model =
       print_endline "Niz ni veljaven";
       ZamenjajVmesnik SeznamMoznosti
 
-let init avtomat =
-  {
-    avtomat;
-    trenutna_stanja_avtomata = [(stanja avtomat).(0)];
-    stanje_vmesnika = SeznamMoznosti;
-  }
+
 
 let rec loop model =
   let msg = view model in
