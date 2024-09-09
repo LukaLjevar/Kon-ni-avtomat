@@ -36,5 +36,5 @@ V tej datoteki definiramo tip trakov, ki jih bomo ustvarili iz niza2, torej niza
 Tukaj definiramo tip zagnanega avtomata, ki ga predstavimo z zapisnim tipom, ki vsebuje avtomat, trak in seznam trenutnih stanj avtomata. Definiramo, kako se naj avtomat premika med stanji in funkcijo, ki sporoča, ali je katero izmed trenutnih stanj, v katerih se avtomat nahaja sprejemno.
 
 ## Navodila za uporabo
-Klonirajte si repozitorij. Z ukazom ==dune build==. zgradite datoteko tekstovniVmesnik.exe. Z ukazom cd src se premaknite v mapo src in poženite ukaz .\tekstovniVmesnik.exe. Tako boste lahko začeli uporabljati avtomat. 
+Klonirajte si repozitorij. Z ukazom == dune build == zgradite datoteko tekstovniVmesnik.exe. Z ukazom cd src se premaknite v mapo src in poženite ukaz .\tekstovniVmesnik.exe. Tako boste lahko začeli uporabljati avtomat. 
 
