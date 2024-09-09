@@ -20,7 +20,7 @@ Končna množica simbolov $\Sigma$, ki jo naš avtomat sprejme, so vsi elementi 
 ## Kako avtomat deluje?
 ![Avtomat](https://github.com/user-attachments/assets/cca60b88-850b-4673-afbd-eebb958df38e)
 
-Zgornja slika prikazuje avtomat, ki v nizu preverja obstoj podniza "analiza". Začnemo v začetnem stanju (-1, 'X'). V tem stanju ostanemo, dokler (morda) ne prejmemo znaka 'a'. Tedaj se ena veja premakne v naslednje stanje, kjer pričakuje naslednji znak, ena pa ostane na začetku. Postopek ponavljamo, dokler ne pridemo do konca niza oziroma dokler ena izmed vej ne pride do sprejemnega stanja (6, 'a'). `Ena veja` bo vedno v začetnem stanju.
+Zgornja slika prikazuje avtomat, ki v nizu preverja obstoj podniza "analiza". Začnemo v začetnem stanju (-1, 'X'). V tem stanju ostanemo, dokler (morda) ne prejmemo znaka 'a'. Tedaj se ena veja premakne v naslednje stanje, kjer pričakuje naslednji znak, ena pa ostane na začetku. Postopek ponavljamo, dokler ne pridemo do konca niza oziroma dokler ena izmed vej ne pride do sprejemnega stanja (6, 'a'). Ena veja bo vedno v začetnem stanju.
 
 ### Zakaj nedeterministično?
 Poglejmo si na primeru podniza "analiza". Naivno bi se iskanja tega podniza v nadnizu (niz2) lotili tako, da v nizu2 najprej poiščemo prvo pojavitev znaka 'a'. Če znaka 'a' v nizu2 ni, potem niz2 ne vsebuje podniza "analiza". Sicer, ko najdemo znak 'a', preverjamo, ali je naslednji znak 'n'. Če je, potem preverjamo, ali je sledeči znak 'a', sicer se vrnemo v začetno stanje in s postopkom nadaljujemo. Vendar ta deterministični pristop ne deluje vedno pravilno. Bralcu prepuščam razmislek, da tu opisan pristop v nizu "ananaliza" ne bi našel podniza "analiza", čeprav ga očitno vsebuje. Zato je potreben nedeterminističen pristop, pri katerem poskrbimo, da je ena veja vedno v začetnem stanju.
@@ -36,5 +36,5 @@ V tej datoteki definiramo tip trakov, ki jih bomo ustvarili iz niza2, torej niza
 Tukaj definiramo tip zagnanega avtomata, ki ga predstavimo z zapisnim tipom, ki vsebuje avtomat, trak in seznam trenutnih stanj avtomata. Definiramo, kako se naj avtomat premika med stanji in funkcijo, ki sporoča, ali je katero izmed trenutnih stanj, v katerih se avtomat nahaja sprejemno.
 
 ## Navodila za uporabo
-Klonirajte si repozitorij. Z ukazom == dune build == zgradite datoteko tekstovniVmesnik.exe. Z ukazom cd src se premaknite v mapo src in poženite ukaz .\tekstovniVmesnik.exe. Tako boste lahko začeli uporabljati avtomat. 
+Klonirajte si repozitorij. Z ukazom `dune build` zgradite datoteko `tekstovniVmesnik.exe`. Z ukazom `cd src` se premaknite v mapo `src` in poženite ukaz `.\tekstovniVmesnik.exe`. Tako boste lahko začeli uporabljati avtomat. 
 
