@@ -16,10 +16,7 @@ V primeru iskalnika podniza, iz niza1 generiramo množico stanj na naslednji na�
 [|(-1, 'X'); (0, 'a'); (1, 'n'); (2, 'b'); (3, 'a'); (4, 'n'); (5, 'p'); (6, 'e'); (7, 't'); (8, 'p'); (9, 'o'); (10, 'd'); (11, 'g'); (12, 'a'); (13, 'n')|]. Za predstavitev stanj z urejenimi pari sem se odločil zato, da ločimo med sabo iste črke, kadar se neka črka v nizu1 pojavi večkrat, na primer črka 'p' v *"anbanpetpodgan"*. Poleg indeksa pa sem na drugo komponento dodal še znak zato, da lahko vhodni znak iz niza2 kar takoj primerjamo z znaki iz niza1.
 
 ## Kako avtomat deluje?
-<div style="width:60px ; height:60px">
-![Screenshot 2024-09-09 072945](https://github.com/user-attachments/assets/2ad4af0c-d0f5-4563-9431-19af87b269e8)
-<div>
-
+![Avtomat](https://github.com/user-attachments/assets/cca60b88-850b-4673-afbd-eebb958df38e)
 
 ## avtomat.ml
 Na začetnute datoteke definiramo funkcijo, ki iz niza1 tvori ustrezno tabelo možnih stanj. S pomočjo te tabele bomo ustvarili avtomat, ki išče ta podniz. Definiramo tudi njen "inverz", ki ustrezno tabelo stanj pretvori nazaj v niz. To funkcijo bomo potrebovali zato, da lahko tekstovni vmesnik natisne iskani niz1. Sprejemno stanje je preprosto zadnje mesto v tabeli. Ker je avtomat nedeterminističen, je lahko v večih stanjih hkrati. Seznam trenutnih stanj je implemntiran s seznamom, zato da lahko zlahka dodajamo na začetek. Prehode definiramo s pomočjo dveh funkcij. Prva enemu izmed trenutnih stanj priredi vsa naslednja stanja, druga pa združi slike vseh posameznih stanj v niv seznam. Sledi definicija tipa avtomat in navodilo, kako iz danega niza1 ustvariti avtomat, ki bo ta niz iskal v drugih nizih. Tako lahko ustvarimo različne avtomate, glede na to kateri niz1 smo vnesli na začetku. Na koncu definiramo še izhodno funkcijo v odvisnosti od trenutnih stanj in tako iz končnega avtomata ustvarimo Mooreov avtomat.
