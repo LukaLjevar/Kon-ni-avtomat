@@ -19,7 +19,8 @@ Na začetnute datoteke definiramo funkcijo, ki iz niza1 tvori ustrezno tabelo mo
 ## stanje.ml
 Stanja sem implementiral z urejenim parom int * char. Nato te urejen pare v datoteki avtomat.ml zložim v tabelo in na ta način predstavim množico stanja avtomata.
 ## trak.ml
-**TO DO**
+V tej datoteki definiramo tip trakov, ki jih bomo ustvarili iz niza2, torej niza v katerem bomo iskali podniz. Trak je implementiran z zapisnim tipom, ki na prvi komponenti hrani niz, na drugi pa indeks trenutnega znaka, tj. na katerem indeksu niza2 se trenutno nahajamo.
+Nato definiramo pomožne funkcija za delo s trakovi. Z njihovo pomočjo določimo indeks trenutnega znaka na traku, ali se nahajamo na koncu traku, se premaknemo do naslednjega znaka na traku, it niza tvorimo trak in iz traku tvorimo niz.
 ## zagnani_avtomat.ml
 **TO DO**
 ## Tekstovni vmesnik
