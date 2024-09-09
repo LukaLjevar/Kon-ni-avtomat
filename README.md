@@ -16,7 +16,9 @@ V primeru iskalnika podniza, iz niza1 generiramo množico stanj na naslednji na�
 [|(-1, 'X'); (0, 'a'); (1, 'n'); (2, 'b'); (3, 'a'); (4, 'n'); (5, 'p'); (6, 'e'); (7, 't'); (8, 'p'); (9, 'o'); (10, 'd'); (11, 'g'); (12, 'a'); (13, 'n')|]. Za predstavitev stanj z urejenimi pari sem se odločil zato, da ločimo med sabo iste črke, kadar se neka črka v nizu1 pojavi večkrat, na primer črka 'p' v *"anbanpetpodgan"*. Poleg indeksa pa sem na drugo komponento dodal še znak zato, da lahko vhodni znak iz niza2 kar takoj primerjamo z znaki iz niza1.
 
 ## Kako avtomat deluje?
+<div style="width:60px ; height:60px">
 ![Screenshot 2024-09-09 072945](https://github.com/user-attachments/assets/2ad4af0c-d0f5-4563-9431-19af87b269e8)
+<div>
 
 
 ## avtomat.ml
